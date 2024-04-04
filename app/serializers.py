@@ -20,12 +20,6 @@ class CaseSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class CaseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Case
-        fields = '__all__'
-
-
 class StaffSerializer(serializers.ModelSerializer):
     class Meta:
         model = Staff
