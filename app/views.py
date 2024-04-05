@@ -4,6 +4,7 @@ from .models import Client, Request, Case, Staff, Appointment
 from .serializers import ClientSerializer, RequestSerializer, CaseSerializer, StaffSerializer, AppointmentSerializer
 from django.core.mail import send_mail
 from django.conf import settings
+from .permissions import IsCaseParticipant
 
 
 class ClientViewSet(viewsets.ModelViewSet):
@@ -20,6 +21,13 @@ class RequestViewSet(viewsets.ModelViewSet):
 class CaseViewSet(viewsets.ModelViewSet):
     queryset = Case.objects.all()
     serializer_class = CaseSerializer
+
+    def get_permissions(self):
+        """
+        list of permission classes
+        """
+        permission_classes = [IsCaseParticipant]
+        return [permission() for permission in permission_classes]
 
 
 class StaffViewSet(viewsets.ModelViewSet):

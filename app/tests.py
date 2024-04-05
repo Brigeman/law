@@ -31,7 +31,7 @@ class ClientAPITests(APITestCase):
         self.assertEqual(Client.objects.get().name, 'Test Client')
 
 
-class AppointmentTests(TestCase):
+class AppointmentTests(APITestCase):
     def setUp(self):
         # Create test data
         self.user = User.objects.create_user(username='testuser', email='test@example.com', password='password')
@@ -66,3 +66,30 @@ class AppointmentTests(TestCase):
         self.assertEqual(Appointment.objects.count(), 1)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject, 'Назначение встречи')
+
+
+class CaseTests(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', email='test@example.com', password='password')
+        self.token = Token.objects.create(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+        self.client_obj = Client.objects.create(name="Client", email="client@example.com")
+
+    def test_create_case(self):
+        # Подготовка данных для создания дела, включая обязательное поле 'description'
+        data = {
+            'title': 'New Case',
+            'case_number': '12345',
+            'status': 'Open',
+            'client': self.client_obj.id,  # Предположение, что client_obj правильно создан и сохранен в setUp
+            'description': 'Test Case Description'  # Добавлено обязательное поле 'description'
+        }
+
+        # Используйте URL без префикса 'api'
+        response = self.client.post('/cases/', data, format='json')
+
+        # Используйте response.content вместо response.data для вывода содержимого ответа в случае ошибки
+        if response.status_code != status.HTTP_201_CREATED:
+            print(response.content)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
