@@ -1,0 +1,51 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .upper-header {
+    width: 100%;
+    background-color: #080606; /* цвет фона верхнего раздела */
+    color: #fff; /* цвет текста */
+    padding: 0.5rem; /* отступы */
+  }
+  
+  .contacts {
+    display: flex;
+    justify-content: flex-start; /* контакты слева */
+    padding: 0.5rem; /* отступы */
+    gap: 1rem; /* пространство между номером и email */
+  }
+  
+  .lower-header {
+    display: flex;
+    justify-content: space-around; /* элементы равномерно распределены */
+    align-items: center;
+    width: 100%; /* ширина нижнего раздела */
+    background-color: #645757; /* цвет фона нижнего раздела */
+    padding: 1rem; /* отступы */
+  }
+  
+  .logo {
+    flex-grow: 1; /* логотип занимает максимум доступного места */
+    font-size: 1.5rem; /* размер шрифта логотипа */
+    /* Дополнительные стили для логотипа */
+  }
+  
+  .call-button {
+    /* Стили для кнопки заказа звонка */
+    padding: 0.5rem 1rem;
+    background-color: #f00; /* цвет фона кнопки */
+    color: #fff; /* цвет текста кнопки */
+    border: none; /* без границ */
+    cursor: pointer; /* курсор в виде указателя */
+  }
+  
+  .call-button:hover {
+    background-color: #e00; /* цвет фона кнопки при наведении */
+  }
+  
+  /* Стили для Navbar остаются неизменными и определены в Navbar.css */
+  

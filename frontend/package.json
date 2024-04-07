@@ -12,6 +12,7 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.24.1",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-transform-class-properties": "^7.24.1",
     "@babel/plugin-transform-nullish-coalescing-operator": "^7.24.1",
@@ -26,11 +27,22 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": ["react-app", "react-app/jest"]
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
-    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "overrides": {
     "nth-check": "^2.0.1",

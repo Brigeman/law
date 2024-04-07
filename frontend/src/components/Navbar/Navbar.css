@@ -1,0 +1,28 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000; /* Или другой цвет фона */
+    color: #fff; /* Цвет текста */
+  }
+  
+  .navbar-nav {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-item {
+    margin: 0 10px; /* Расстояние между пунктами меню */
+  }
+  
+  .nav-item a {
+    color: #fff; /* Цвет ссылок */
+    text-decoration: none; /* Убрать подчеркивание у ссылок */
+    padding: 10px; /* Паддинг для ссылок */
+  }
+  
+  .nav-item a:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+  }
