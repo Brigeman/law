@@ -41,14 +41,13 @@
 }
 
 /* Стили для особенностей (features) */
-.features {
+.feature-container {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 20px;
-  margin-bottom: 200px;
   width: 100%;
   max-width: 1200px;
+  margin-bottom: 200px;
 }
 
 .feature {
@@ -61,6 +60,14 @@
   align-items: center;
   box-sizing: border-box;
   min-height: 200px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.0s ease-out, transform 1.0s ease-out;
+}
+
+.feature.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .feature-icon {

@@ -37,60 +37,66 @@ function Body() {
     }
   ];
   const [visibleServices, setVisibleServices] = useState([]);
-  const { ref, inView } = useInView({
+  const [visibleFeatures, setVisibleFeatures] = useState(false); 
+
+  const { ref: servicesRef, inView: servicesInView } = useInView({
     triggerOnce: true,
-    threshold: 0.5,
+    threshold: 1.0,
+  });
+
+  const { ref: featuresRef, inView: featuresInView } = useInView({
+    triggerOnce: true,
+    threshold: 1.0,
   });
 
   useEffect(() => {
-    if (inView) {
-      // При появлении раздела в области видимости делаем все услуги видимыми
+    if (servicesInView) {
       setVisibleServices(services.map((_, index) => index));
     }
-  // eslint-disable-next-line no-use-before-define
-  }, [inView, services]); // Зависимость от inView гарантирует, что код сработает при его изменении
+  }, [servicesInView, services]);
 
+  useEffect(() => {
+    if (featuresInView) {
+      setVisibleFeatures(true); 
+    }
+  }, [featuresInView]);
 
   return (
     <div className="body-container">
-    {/* Раздел со слоганом и кнопкой */}
-    <div className="slogan-section">
-      <h2 className="slogan">Ваш Слоган Здесь</h2>
-      <button className="action-button">Нажми на Меня</button>
-    </div>
+      <div className="slogan-section">
+        <h2 className="slogan">Ваш Слоган Здесь</h2>
+        <button className="action-button">Нажми на Меня</button>
+      </div>
 
-    {/* Прямоугольники с иконкой, названием и описанием */}
-    <div className="features">
-      <div className="feature">
-        <div className="feature-icon">🌟</div>
-        <h3 className="feature-title">Доверие</h3>
-        <p className="feature-description">Описание 1.</p>
-      </div>
-      <div className="feature">
-        <div className="feature-icon">🌟</div>
-        <h3 className="feature-title">Надежность</h3>
-        <p className="feature-description">Описание 2.</p>
-      </div>
-      <div className="feature">
-        <div className="feature-icon">🌟</div>
-        <h3 className="feature-title">Этика</h3>
-        <p className="feature-description">Описание 3.</p>
-      </div>
-    </div>
-
-    {/* Раздел услуг */}
-    <div className="services-list" ref={ref}>
-      {services.map((service, index) => (
-        <div className={`service ${visibleServices.includes(index) ? 'visible' : ''}`} key={index}>
-          <div className="service-icon">{service.icon}</div>
-          <h3 className="service-title">{service.title}</h3>
-          <p className="service-description">{service.description}</p>
+      <div className="feature-container" ref={featuresRef}>
+        <div className={`feature ${visibleFeatures ? 'visible' : ''}`}>
+          <div className="feature-icon">🌟</div>
+          <h3 className="feature-title">Доверие</h3>
+          <p className="feature-description">Описание 1.</p>
         </div>
-      ))}
+        <div className={`feature ${visibleFeatures ? 'visible' : ''}`}>
+          <div className="feature-icon">🌟</div>
+          <h3 className="feature-title">Надежность</h3>
+          <p className="feature-description">Описание 2.</p>
+        </div>
+        <div className={`feature ${visibleFeatures ? 'visible' : ''}`}>
+          <div className="feature-icon">🌟</div>
+          <h3 className="feature-title">Этика</h3>
+          <p className="feature-description">Описание 3.</p>
+        </div>
+      </div>
+
+      <div className="services-list" ref={servicesRef}>
+        {services.map((service, index) => (
+          <div className={`service ${visibleServices.includes(index) ? 'visible' : ''}`} key={index}>
+            <div className="service-icon">{service.icon}</div>
+            <h3 className="service-title">{service.title}</h3>
+            <p className="service-description">{service.description}</p>
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default Body;
-
