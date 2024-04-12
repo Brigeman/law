@@ -1,28 +1,51 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #000; /* Или другой цвет фона */
-    color: #fff; /* Цвет текста */
-  }
-  
-  .navbar-nav {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav-item {
-    margin: 0 10px; /* Расстояние между пунктами меню */
-  }
-  
-  .nav-item a {
-    color: #fff; /* Цвет ссылок */
-    text-decoration: none; /* Убрать подчеркивание у ссылок */
-    padding: 10px; /* Паддинг для ссылок */
-  }
-  
-  .nav-item a:hover {
-    text-decoration: underline; /* Подчеркивание при наведении */
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0e151f; /* Цвет фона */
+  color: #baa979; /* Цвет текста */
+  position: relative; /* Для абсолютного позиционирования индикатора */
+}
+
+.navbar-nav {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  position: relative; /* Относительное позиционирование для индикатора */
+}
+
+.nav-item {
+  margin: 0 10px; /* Расстояние между пунктами меню */
+  position: relative; /* Для точного позиционирования индикатора */
+}
+
+.nav-item a {
+  color: #baa979; /* Цвет ссылок */
+  text-decoration: none; /* Убрать подчеркивание у ссылок */
+  padding: 10px; /* Паддинг для ссылок */
+  display: block; /* Для корректной работы offsetWidth и offsetLeft */
+}
+
+.nav-item a:hover {
+  text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+.nav-item.active a {
+  font-weight: bold; /* Выделение активной ссылки */
+}
+
+.nav-indicator {
+  background-color: #0e151f; /* Цвет звезды/подчёркивания */
+  position: fixed; /* Позиционируем относительно viewport */
+  pointer-events: none;
+  opacity: 0; /* Сначала звезда невидима */
+  transform: translateX(-50%); /* Центрируем звезду по горизонтали */
+  border-radius: 50%; /* Круглая форма */
+  transition: opacity 0.5s ease, transform 0.2s ease;
+  box-shadow: 0 0 4px 4px #baa979; /* Расплывчатый след */
+  z-index: 1000;
+  /* Начальный размер звезды */
+  width: 10px;
+  height: 10px;
+}

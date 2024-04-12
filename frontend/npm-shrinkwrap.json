@@ -13,6 +13,7 @@
         "@testing-library/user-event": "^13.5.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-intersection-observer": "^9.8.2",
         "react-scripts": "^5.0.1",
         "web-vitals": "^2.1.4"
       },
@@ -17149,6 +17150,20 @@
       "resolved": "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.11.tgz",
       "integrity": "sha512-/6UZ2qgEyH2aqzYZgQPxEnz33NJ2gNsnHA2o5+o4wW9bLM/JYQitNP9xPhsXwC08hMMovfGe/8retsdDsczPRg=="
     },
+    "node_modules/react-intersection-observer": {
+      "version": "9.8.2",
+      "resolved": "https://registry.npmjs.org/react-intersection-observer/-/react-intersection-observer-9.8.2.tgz",
+      "integrity": "sha512-901naEiiZmse3p+AmtbQ3NL9xx+gQ8TXLiGDc+8GiE3JKJkNV3vP737aGuWTAXBA+1QqxPrDDE+fIEgYpGDlrQ==",
+      "peerDependencies": {
+        "react": "^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0",
+        "react-dom": "^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0"
+      },
+      "peerDependenciesMeta": {
+        "react-dom": {
+          "optional": true
+        }
+      }
+    },
     "node_modules/react-is": {
       "version": "17.0.2",
       "resolved": "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz",
@@ -19233,16 +19248,16 @@
       }
     },
     "node_modules/typescript": {
-      "version": "5.4.4",
-      "resolved": "https://registry.npmjs.org/typescript/-/typescript-5.4.4.tgz",
-      "integrity": "sha512-dGE2Vv8cpVvw28v8HCPqyb08EzbBURxDpuhJvTrusShUfGnhHBafDsLdS1EhhxyL6BJQE+2cT3dDPAv+MQ6oLw==",
+      "version": "4.9.5",
+      "resolved": "https://registry.npmjs.org/typescript/-/typescript-4.9.5.tgz",
+      "integrity": "sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==",
       "peer": true,
       "bin": {
         "tsc": "bin/tsc",
         "tsserver": "bin/tsserver"
       },
       "engines": {
-        "node": ">=14.17"
+        "node": ">=4.2.0"
       }
     },
     "node_modules/unbox-primitive": {
