@@ -41,11 +41,16 @@
   pointer-events: none;
   opacity: 0; /* Сначала звезда невидима */
   transform: translateX(-50%); /* Центрируем звезду по горизонтали */
-  border-radius: 50%; /* Круглая форма */
+  border-radius: 30%; /* Круглая форма */
   transition: opacity 0.5s ease, transform 0.2s ease;
   box-shadow: 0 0 4px 4px #baa979; /* Расплывчатый след */
   z-index: 1000;
   /* Начальный размер звезды */
   width: 10px;
   height: 10px;
+}
+
+.bodoni-moda-nav {
+  font-family: 'Bodoni Moda', serif;
+  font-weight: 700; 
 }
