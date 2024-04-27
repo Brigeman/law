@@ -1,52 +1,89 @@
+:root {
+  --glow-color: hsl(235, 17%, 71%); /* Example glow color */
+}
+
+@keyframes border-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes text-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes faulty-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+
 .header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-  }
-  
-  .upper-header {
-    width: 100%;
-    background-color: #080606; /* цвет фона верхнего раздела */
-    color: #fff; /* цвет текста */
-    padding: 0.1rem; /* отступы */
-  }
-  
-  .contacts {
-    display: flex;
-    justify-content: flex-start; /* контакты слева */
-    padding: 1rem; /* отступы */
-    gap: 2rem; /* пространство между номером и email */
-  }
-  
-  .lower-header {
-    display: flex;
-    justify-content: space-around; /* элементы равномерно распределены */
-    align-items: center;
-    width: 100%; /* ширина нижнего раздела */
-    background-color: #182434; /* цвет фона нижнего раздела */
-    padding: 0.5rem; /* отступы */
-  }
-  
-  .logo {
-    flex-grow: 1; /* логотип занимает максимум доступного места */
-    font-size: 1.5rem; /* размер шрифта логотипа */
-    padding: 1rem;
-    /* Дополнительные стили для логотипа */
-  }
-  
-  .call-button {
-    /* Стили для кнопки заказа звонка */
-    padding: 0.5rem 1rem;
-    background-color: rgb(14, 66, 78); /* цвет фона кнопки */
-    color: #fff; /* цвет текста кнопки */
-    border: none; /* без границ */
-    cursor: pointer; /* курсор в виде указателя */
-  }
-  
-  .call-button:hover {
-    background-color: rgb(16, 24, 72); /* цвет фона кнопки при наведении */
-  }
-  
-  
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.upper-header {
+  width: 100%;
+  background-color: #080606; /* цвет фона верхнего раздела */
+  color: #fff; /* цвет текста */
+  padding: 0.1rem; /* отступы */
+  display: flex; /* use flexbox */
+  justify-content: space-between; /* align items on opposite ends */
+  align-items: center; /* center items vertically */
+}
+
+.contacts {
+  display: flex;
+  justify-content: flex-start; /* контакты слева */
+  padding: 1rem; /* отступы */
+  gap: 1rem; /* пространство между номером и email */
+}
+
+.glowing-btn {
+  color: var(--glow-color);
+  cursor: pointer;
+  padding: 0.35em 1em;
+  border: 0.15em solid var(--glow-color);
+  border-radius: 0.45em;
+  background: none;
+  perspective: 2em;
+  font-family: 'Bodoni Moda', serif; /* Using Bodoni Moda as the primary font */
+  font-size: 1em; /* Adjust the size as needed */
+  font-weight: 900;
+  letter-spacing: 0.05em; /* Adjusted for better readability */
+
+  box-shadow: inset 0px 0px 0.5em 0px var(--glow-color), 0px 0px 0.5em 0px var(--glow-color);
+  animation: border-flicker 2s linear infinite;
+}
+
+.glowing-txt {
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
+  animation: text-flicker 3s linear infinite;
+}
+
+.faulty-letter {
+  opacity: 0.5;
+  animation: faulty-flicker 2s linear infinite;
+}
+
+
+.lower-header {
+  display: flex;
+  justify-content: space-around; /* элементы равномерно распределены */
+  align-items: center;
+  width: 100%; /* ширина нижнего раздела */
+  background-color: #182434; /* цвет фона нижнего раздела */
+  padding: 0.5rem; /* отступы */
+}
+
+.logo {
+  flex-grow: 1; /* логотип занимает максимум доступного места */
+  font-size: 1.5rem; /* размер шрифта логотипа */
+  padding: 1rem;
+  /* Дополнительные стили для логотипа */
+}
+
+
