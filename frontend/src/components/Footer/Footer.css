@@ -1,74 +1,104 @@
-
 .footer {
-    color: #fff;
-    background-color: #000;
-    padding: 20px;
-    font-size: 14px;
-  }
-  
-  .footer-top {
-    /* стилизация верхней части футера */
-    text-align: center;
-    padding-bottom: 20px;
-  }
-  
-  .footer-logo {
-    /* стилизация лого и названия компании */
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .footer-slogan,
-  .footer-tagline {
-    /* стилизация слогана и описания */
-  }
-  
-  hr {
-    border: 0;
-    height: 1px;
-    background: #fff;
-    margin: 20px 0;
-  }
-  
-  .footer-mid {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .footer-address,
-  .footer-services,
-  .footer-question {
-    /* стилизация адреса, списка услуг и формы вопросов */
-  }
-  
-  .footer-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .footer-triangle {
-    width: 0;
-    height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    border-bottom: 50px solid #fff; /* треугольник вверх ногами */
-  }
-  
-  .footer-rights {
-    /* стилизация информации о правах */
-    padding-left: 20px;
-  }
-  
-  .footer-rights a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .footer-rights a:hover {
-    text-decoration: underline;
-  }
-  
-  
+  display: flex;
+  justify-content: space-between;  
+  align-items: center;
+  width: 100%;  
+  max-width: auto; /* Ограничиваем максимальную ширину футера */
+  margin: 0 auto; /* Центрирование футера в пределах доступного пространства */
+  height: 10vh;
+  background-color: #0e151f;
+  color: #fff;
+  padding: 20px;
+}
+
+
+.footer-section {
+  flex: 1;  /* Assign equal importance but allows flexing as per content size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Left Section: Logo and address */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align text to the left */
+  justify-content: center;
+}
+
+/* Center Section: Copyright */
+.footer-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center this text */
+  justify-content: center;
+}
+
+/* Right Section: Social Media Links */
+.footer-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Push social media links to the right */
+}
+
+.footer .social-media-links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.footer .social-media-links li {
+  margin: 0 30px;
+  cursor: pointer;
+  position: relative;
+}
+
+.footer .social-media-links li a {
+  text-decoration: none;
+  color: #3d4767;
+}
+
+.footer .social-media-links li a i {
+  font-size: 3em;
+}
+
+.footer .social-media-links li a::before {
+  font-family: "FontAwesome";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 3em; /* Adjusted size */
+  overflow: hidden;
+  transition: 0.5s ease-in-out;
+  height: 0;
+}
+
+/* Specific pseudo-element styling for icons */
+.footer .social-media-links li:nth-child(1) a::before {
+  content: "\f16d"; /* Instagram */
+  background-image: linear-gradient(45deg, 
+    #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-bottom: 4px solid #dc2743;
+}
+
+.footer .social-media-links li:nth-child(2) a::before {
+  content: "\f2c6"; /* Telegram */
+  color: #0088cc;
+  border-bottom: 4px solid #0088cc;
+}
+
+.footer .social-media-links li:nth-child(3) a::before {
+  content: "\f099"; /* Twitter */
+  color: #1DA1F2;
+  border-bottom: 4px solid #1DA1F2;
+}
+
+.footer .social-media-links li:hover a::before {
+  height: 100%; /* Show the pseudo-element on hover */
+}
