@@ -9,7 +9,6 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 .App {
   display: flex;
   flex-direction: column;

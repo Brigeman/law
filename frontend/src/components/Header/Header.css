@@ -4,7 +4,7 @@
 
 @keyframes border-flicker {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.9; }
+  50% { opacity: 0.5; }
 }
 
 @keyframes text-flicker {
@@ -48,7 +48,7 @@
   padding: 0.35em 1em;
   border: 0.15em solid var(--glow-color);
   border-radius: 0.45em;
-  background: none;
+  background: #182434;
   perspective: 2em;
   font-family: 'Bodoni Moda', serif; /* Using Bodoni Moda as the primary font */
   font-size: 1em; /* Adjust the size as needed */
@@ -65,10 +65,9 @@
 }
 
 .faulty-letter {
-  opacity: 0.5;
-  animation: faulty-flicker 2s linear infinite;
+  opacity: 2;
+  animation: faulty-flicker 1s linear infinite;
 }
-
 
 .lower-header {
   display: flex;
