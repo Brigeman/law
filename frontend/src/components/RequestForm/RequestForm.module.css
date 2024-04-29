@@ -1,29 +1,100 @@
-/* RequestForm.module.css */
+.container {
+    display: flex;
+    flex-direction: column; /* Изменение направления flex контейнера */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #e6e9ef; /* Фон для всего контейнера */
+    width: 100vw; /* Установка ширины контейнера на весь экран */
+    font-family: 'Bodoni Moda', serif;
+}
+
 .formContainer {
+    width: 25%;
+    max-width: 300px;
     padding: 20px;
-    background-color: #ecedf3;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgb(222, 231, 231);
-  }
-  
-  .inputField {
-    width: 100%;
-    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    background-color: transparent; /* Удаление фона формы */
+    margin: 20px; /* Добавляем небольшие отступы между формой и контейнером */
+}
+
+@media (max-width: 400px) {
+    .formContainer {
+        width: 90%; /* Уменьшаем ширину формы на мобильных устройствах */
+    }
+}
+
+.formField {
+    position: relative;
+    margin-bottom: 16px;
+    border: 1px solid #a89a9a; /* Добавление границы */
+    border-radius: 4px;
+}
+
+.formFieldLabel {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    padding: 0;
+    transition: transform 0.4s, font-size 0.4s;
+    background-color: #f3f4f6; /* Фон метки */
+    pointer-events: none;
+    font-size: 1.2rem;
+    color: #999;
+    z-index: 1; /* Установка z-index, чтобы метка оставалась над границей */
+}
+
+.inputField {
+    width: calc(100% - 26px); /* Учитываем границы и отступы метки */
+    padding: 12px;
+    padding-top: 28px;
+    border: none; /* Удаляем стандартные границы поля */
+    outline: none;
+    font-size: 1.2rem;
+}
+
+.inputField:focus {
+    border-color: #193be5;
+}
+
+.active .formFieldLabel,
+.filled .formFieldLabel {
+    transform: translateY(-10px);
+    font-size: 1.0rem;
+    color: #b11adc;
+}
+
+.title {
     margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .submitButton {
-    background-color: #4CAF50;
-    color: rgb(32, 168, 100);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
+    font-size: 2.0rem;
+    color: #333; /* Цвет заголовка */
+}
+
+.description {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #666; /* Цвет описания */
+}
+
+.submitButton {
+    padding: 10px 20px; /* Размер кнопки отправки формы */
+    border-radius: 50px; /* Сглаженные края */
+    background-color: transparent;
+    font-family: 'Bodoni Moda', serif; /* Смена на ваш основной шрифт */
+    font-size: 14px; /* Увеличенный размер шрифта для лучшей читаемости */
+    color: #958282;
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Более тонкая граница */
+    overflow: hidden;
     cursor: pointer;
-  }
-  
-  .submitButton:hover {
-    background-color: #45a049;
-  }
-  
+    transition: all 0.4s ease; /* Более быстрая анимация */
+    box-shadow: 4px 4px 10px rgb(9, 2, 78), -4px -4px 10px rgba(255, 255, 255, 0.1);
+}
+
+.submitButton:hover {
+    border-color: #4A90E2; /* Синий цвет для акцента */
+    transform: translateY(-2px) scale(1.02); /* Меньшее движение для изящества */
+    box-shadow: 0px 8px 16px rgba(7, 7, 107, 0.2);
+}
