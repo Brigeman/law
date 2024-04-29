@@ -1,22 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
+import RequestForm from '../RequestForm/RequestForm';
+import Modal from 'react-modal';
 import './Header.css';
 
 function Header() {
-  // Text to display
-  const buttonText = "Заказать звонок";
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  // Function to apply faulty-letter class to every third letter
-  const styledText = (text) => {
-    return (
-      <span className='glowing-txt'>
-        {text.split('').map((char, index) => (
-          (index + 1) % 3 === 0
-            ? <span className='faulty-letter' key={index}>{char}</span>
-            : char
-        ))}
-      </span>
-    );
+  const openModal = () => setModalIsOpen(true);
+  const closeModal = () => setModalIsOpen(false);
+
+  const handleFormSubmit = (phoneNumber) => {
+    console.log('Заявка отправлена с номером:', phoneNumber);
   };
 
   return (
@@ -26,10 +21,14 @@ function Header() {
           <div className="phone">+7 000 00 00</div>
           <div className="email">holyshit@yahoo.com</div>
         </div>
-        <button className='glowing-btn'>
-          {styledText(buttonText)}
+        <button className='request-btn' onClick={openModal}>
+          <span className='button-text'>Оставить заявку</span>
+          <div className="fill-container"></div>
         </button>
       </div>
+      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Форма заявки">
+        <RequestForm onSubmit={handleFormSubmit} onClose={closeModal} />
+      </Modal>
       <div className="lower-header">
         <div className="logo">Holyshittech</div>
         <Navbar />
