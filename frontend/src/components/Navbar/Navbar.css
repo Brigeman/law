@@ -1,56 +1,285 @@
-.navbar {
+.visuallyHidden {
+  position: absolute; 
+  overflow: hidden; 
+  clip: rect(0 0 0 0); 
+  height: 1px; width: 1px; 
+  margin: -1px; padding: 0; border: 0; 
+}
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  width: 70%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background-color: #0e151f; /* Цвет фона */
-  color: #baa979; /* Цвет текста */
-  position: relative; /* Для абсолютного позиционирования индикатора */
 }
 
-.navbar-nav {
-  list-style: none;
-  display: flex;
-  margin: 0;
+.hamburger {
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 30px;
+  height: 30px;
+  position: relative;
+}
+
+.hamburger .bar {
   padding: 0;
-  position: relative; /* Относительное позиционирование для индикатора */
+  width: 30px;
+  height: 4px;
+  background-color: maroon;
+  display: block;
+  border-radius: 4px;
+  transition: all 0.4s ease-in-out;
+  position: absolute; 
 }
 
-.nav-item {
-  margin: 0 10px; /* Расстояние между пунктами меню */
-  position: relative; /* Для точного позиционирования индикатора */
+.bar1 {
+  top: 0;
 }
 
-.nav-item a {
-  color: #baa979; /* Цвет ссылок */
-  text-decoration: none; /* Убрать подчеркивание у ссылок */
-  padding: 10px; /* Паддинг для ссылок */
-  display: block; /* Для корректной работы offsetWidth и offsetLeft */
+.bar2,
+.bar3 {
+  top: 13.5px;
 }
 
-.nav-item a:hover {
-  text-decoration: underline; /* Подчеркивание при наведении */
+.bar3 {
+  right: 0;
 }
 
-.nav-item.active a {
-  font-weight: bold; /* Выделение активной ссылки */
+.checkbox1:checked + label > .menu-btn_nav > span {
+  transform: rotate(45deg);
+  transform-origin: 5%;
+  width: 41px
 }
 
-.nav-indicator {
-  background-color: #0e151f; /* Цвет звезды/подчёркивания */
-  position: fixed; /* Позиционируем относительно viewport */
-  pointer-events: none;
-  opacity: 0; /* Сначала звезда невидима */
-  transform: translateX(-50%); /* Центрируем звезду по горизонтали */
-  border-radius: 30%; /* Круглая форма */
-  transition: opacity 0.5s ease, transform 0.2s ease;
-  box-shadow: 0 0 4px 4px #baa979; /* Расплывчатый след */
-  z-index: 1000;
-  /* Начальный размер звезды */
-  width: 10px;
-  height: 10px;
+.checkbox1:checked + label > .menu-btn_nav:before {
+  transform: translateX(-40px);
+  background-color: transparent;
 }
 
-.bodoni-moda-nav {
-  font-family: 'Bodoni Moda', serif;
-  font-weight: 700; 
+.checkbox1:checked + label > .menu-btn_nav:after {
+  transform: translateX(40px);
+  background-color: transparent;
+}
+
+.checkbox1:checked + label > .menu-btn_nav > .bar4 {
+  transform-origin: 5%;
+  transform: rotate(-45deg);
+  width: 41px;
+}
+
+.wrapper_nav {
+  position: fixed;
+  top: 0;
+  /*left: -100%;*/
+  right: -100%;
+  height: 100%;
+  width: 100%;
+  background: #000;
+  /*background: linear-gradient(90deg, #f92c78, #4114a1);*/
+  /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
+  /* background: linear-gradient(-45deg, #e3eefe 0%, #efddfb 100%);*/
+  transition: all 0.6s ease-in-out;
+  z-index: 9999; /* Устанавливаем высокий z-index */
+}
+
+#active:checked ~ .wrapper_nav {
+  /*left: 0;*/
+  right: 0;
+}
+
+.menu-btn_nav {
+  position: absolute;
+  z-index: 2;
+  right: 50px;
+  /*left: 20px; */
+  top: 20px;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  background: #b8b1b1;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid rgba(133, 111, 111, 0.938);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 4px 4px 10px rgb(141, 133, 214), -4px -4px 10px rgba(255, 255, 255, 0.1);
+}
+
+.menu-btn_nav span,
+.menu-btn_nav:before,
+.menu-btn_nav:after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 30%;
+  width: 40%;
+  border-bottom: 2px solid #000;
+  transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.menu-btn_nav:before {
+  transform: translateY(-8px);
+}
+
+.menu-btn_nav:after {
+  transform: translateY(8px);
+}
+
+.close_nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* closing animation */
+#active:checked + .menu-btn_nav span {
+  transform: scaleX(0);
+}
+
+#active:checked + .menu-btn_nav:before {
+  transform: rotate(45deg);
+  border-color: #fff;
+}
+
+#active:checked + .menu-btn_nav:after {
+  transform: rotate(-45deg);
+  border-color: #fff;
+}
+
+.wrapper_nav ul {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  height: 90%;
+  transform: translate(-50%, -50%);
+  list-style: none;
+  text-align: center;
+  z-index: 9999; /* Устанавливаем высокий z-index */
+}
+
+.wrapper_nav ul li {
+  height: 10%;
+  margin: 15px 0;
+}
+
+.wrapper_nav ul li a {
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: 500;
+  padding: 5px 30px;
+  color: #fff;
+  border-radius: 50px;
+  position: absolute;
+  line-height: 50px;
+  margin: 5px 30px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.wrapper_nav ul li a:after {
+  position: absolute;
+  content: "";
+  background: #fff;
+  /*background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);*/
+  /*background: linear-gradient(375deg, #1cc7d0, #2ede98);*/
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 50px;
+  transform: scaleY(0);
+  z-index: -1;
+  transition: transform 0.3s ease;
+}
+
+.wrapper_nav ul li a:hover:after {
+  transform: scaleY(1);
+}
+
+.wrapper_nav ul li a:hover {
+  color: #1a73e8;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.content_nav {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  text-align: center;
+  width: 100%;
+  color: #202020;
+}
+
+.content_nav .title_nav {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.content_nav p {
+  font-size: 35px;
+  font-weight: 600;
+}
+
+#active:checked ~ .wrapper_nav ul li a {
+  opacity: 1;
+}
+
+.wrapper_nav ul li a {
+  transition: opacity 1.2s, transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transform: translateX(100px);
+}
+
+#active:checked ~ .wrapper_nav ul li a {
+  transform: none;
+  transition-timing-function: ease, cubic-bezier(.1, 1.3, .3, 1);
+  /* easeOutBackを緩めた感じ */
+  transition-delay: .6s;
+  transform: translateX(-100px);
+}
+
+.close-menu-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 2; /* Устанавливаем высокий z-index */
+}
+
+.close-menu-btn span,
+.close-menu-btn:before,
+.close-menu-btn:after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 50%;
+  width: 40%;
+  border-bottom: 2px solid #a70c0c;
+  transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.close-menu-btn:before {
+  transform: translateY(-8px);
+}
+
+.close-menu-btn:after {
+  transform: translateY(8px);
 }
