@@ -6,9 +6,16 @@ import './Header.css';
 
 function Header() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [isActive, setIsActive] = useState(false); // Добавлено состояние isActive
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
+  const toggleMenu = () => {
+    setIsActive(prevIsActive => {
+      console.log('Toggle menu clicked. isActive will be:', !prevIsActive); // Покажет ожидаемое новое состояние
+      return !prevIsActive;
+    });
+  };
 
   const handleFormSubmit = (phoneNumber) => {
     console.log('Заявка отправлена с номером:', phoneNumber);
@@ -23,7 +30,6 @@ function Header() {
         </div>
         <button className='request-btn' onClick={openModal}>
           <span className='button-text'>Оставить заявку</span>
-          <div className="fill-container"></div>
         </button>
       </div>
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Форма заявки">
@@ -31,7 +37,7 @@ function Header() {
       </Modal>
       <div className="lower-header">
         <div className="logo">Holyshittech</div>
-        <Navbar />
+        <Navbar isActive={isActive} toggleMenu={toggleMenu} />
       </div>
     </header>
   );

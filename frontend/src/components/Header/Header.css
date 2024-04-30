@@ -32,17 +32,18 @@
 }
 
 .lower-header {
+  position: relative;
   display: flex;
-  justify-content: space-around; /* элементы равномерно распределены */
+  justify-content: space-between; /* Распределите пространство между логотипом и навбаром */
   align-items: center;
-  width: 100%; /* ширина нижнего раздела */
-  background-color: #182434; /* цвет фона нижнего раздела */
-  padding: 0.5rem; /* отступы */
+  width: 100%;
+  background-color: #182434;
+  padding: 0.5rem;
 }
 
 .logo {
-  flex-grow: 1; /* логотип занимает максимум доступного места */
-  font-size: 1.5rem; /* размер шрифта логотипа */
+  flex-grow: 1;
+  font-size: 1.5rem;
   padding: 1rem;
-  font-family: 'Bodoni Moda', serif; /* Смена на ваш основной шрифт для логотипа */
+  font-family: 'Bodoni Moda', serif;
 }

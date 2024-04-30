@@ -1,43 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Navbar.css';
 
-function Navbar() {
-  const [indicatorStyle, setIndicatorStyle] = useState({});
-
-  const handleMouseMove = (e) => {
-    const link = e.target;
-    const linkRect = link.getBoundingClientRect();
-    setIndicatorStyle({
-      left: `${linkRect.left + window.scrollX}px`,
-      top: `${linkRect.bottom + window.scrollY - 5}px`,
-      width: `${linkRect.width}px`,
-      height: '5px',
-      borderRadius: '50%',
-      transition: 'height 0.2s ease, width 0.2s ease, border-radius 0.2s ease, left 0.2s ease, top 0.2s ease',
-      transform: 'none',
-      opacity: 1,
-    });
-  };
-
-  const handleMouseOut = () => {
-    setIndicatorStyle((prevStyle) => ({
-      ...prevStyle,
-      opacity: 0,
-      transition: 'opacity 0.5s ease',
-    }));
-  };
-
+const Navbar = () => {
   return (
-    <nav className="navbar">
-      <ul className="navbar-nav">
-        {['Услуги', 'Портфолио', 'Команда', 'Отзывы', 'Я требую авокадо', 'Контакты'].map((text, index) => (
-          <li key={index} className="nav-item" onMouseOut={handleMouseOut}>
-            <a href={`/${text.toLowerCase()}`} onMouseMove={handleMouseMove} className="bodoni-moda-nav">{text}</a>
-          </li>
-        ))}
-      </ul>
-      <div className="nav-indicator" style={indicatorStyle} />
-    </nav>
+    <React.Fragment>
+      <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+      <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+      <input type="checkbox" id="active" />
+      <label htmlFor="active" className="menu-btn_nav"><span></span></label>
+      <div className="wrapper_nav">
+        <label htmlFor="active" className="close_nav"></label>
+        <div className="close-menu-btn" onClick={() => { document.getElementById('active').checked = false; }}>
+  <span></span>
+</div>
+        <ul>
+          <li><a href="http://localhost:3000/">Home</a></li>
+          <li><a href="http://localhost:3000/">About</a></li>
+          <li><a href="http://localhost:3000/">Services</a></li>
+          <li><a href="http://localhost:3000/">Gallery</a></li>
+          <li><a href="http://localhost:3000/">Feedback</a></li>
+        </ul>
+      </div>
+      <div className="content_nav">
+        <div className="title_nav">Fullscreen Overlay Navigation Bar</div>
+        <p>(Hamburger Menu-2)</p>
+      </div>
+    </React.Fragment>
   );
 }
 
