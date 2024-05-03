@@ -8,13 +8,13 @@ function Footer() {
         <div className="footer-logo">
           Holyshit
           <div className="footer-slogan">Not guilty</div>
-          <div className="footer-tagline">Предварительные выводы неутешительны...</div>
+          <div className="footer-tagline">Tag...</div>
         </div>
       </div>
       <div className="footer-section footer-center">
         <div className="footer-rights">
           Все права защищены, 2023<br/>
-          <a href="/privacy-policy">Политика обработки персональных данных</a>
+          <a href="/privacy-policy">Политика обработки персональных данных</a> {/* добавить политику */}
         </div>
       </div>
       <div className="footer-section footer-right">
