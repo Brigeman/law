@@ -104,13 +104,13 @@ h1 {
   border-radius: 50%;
   font-size: 20px;
   cursor: pointer;
-  background: #b8b1b1;
+  background: #404244;
   transition: all 0.3s ease-in-out;
-  border: 2px solid rgba(133, 111, 111, 0.938);
+  border: 2px solid rgba(52, 140, 185, 0.938);
   overflow: hidden;
   cursor: pointer;
   transition: all 0.4s ease;
-  box-shadow: 4px 4px 10px rgb(141, 133, 214), -4px -4px 10px rgba(255, 255, 255, 0.1);
+  box-shadow: 4px 4px 10px rgb(52, 125, 208), -4px -4px 10px rgba(255, 255, 255, 0.1);
 }
 
 .menu-btn_nav span,
