@@ -20,10 +20,15 @@
     "@babel/plugin-transform-nullish-coalescing-operator": "^7.24.1",
     "@babel/plugin-transform-numeric-separator": "^7.24.1",
     "@babel/plugin-transform-optional-chaining": "^7.24.1",
-    "@babel/plugin-transform-private-methods": "^7.24.1"
+    "@babel/plugin-transform-private-methods": "^7.24.1",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "watch-css": "postcss src/styles/*.css --watch --output build/styles.css",
+    "start-js": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -47,7 +52,6 @@
     ]
   },
   "overrides": {
-    "nth-check": "^2.0.1",
-    "postcss": "^8.4.31"
+    "nth-check": "^2.0.1"
   }
 }
