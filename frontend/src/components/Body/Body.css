@@ -26,21 +26,6 @@
   color: darkgray;
 }
 
-.action-button {
-  padding: 12px 24px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 13px;
-  transition: background-color 0.3s;
-}
-
-.action-button:hover {
-  background-color: #0056b3;
-}
-
 /* Стили для особенностей (features) */
 .feature-container {
   display: flex;
