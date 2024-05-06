@@ -50,7 +50,7 @@ function Body() {
     triggerOnce: true,
     threshold: 1.0,
   });
-
+  
   useEffect(() => {
     if (servicesInView) {
       setVisibleServices(services.map((_, index) => index));
