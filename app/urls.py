@@ -1,8 +1,9 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import ClientViewSet, RequestViewSet, CaseViewSet, StaffViewSet, AppointmentViewSet
+from .views import ServiceViewSet, ClientViewSet, RequestViewSet, CaseViewSet, StaffViewSet, AppointmentViewSet
 
 router = DefaultRouter()
+router.register(r'services', ServiceViewSet)
 router.register(r'clients', ClientViewSet)
 router.register(r'requests', RequestViewSet)
 router.register(r'cases', CaseViewSet)

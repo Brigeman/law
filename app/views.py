@@ -1,10 +1,15 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from .models import Client, Request, Case, Staff, Appointment
-from .serializers import ClientSerializer, RequestSerializer, CaseSerializer, StaffSerializer, AppointmentSerializer
+from .models import Service,Client, Request, Case, Staff, Appointment
+from .serializers import ServiceSerializer, ClientSerializer, RequestSerializer, CaseSerializer, StaffSerializer, AppointmentSerializer
 from django.core.mail import send_mail
 from django.conf import settings
 from .permissions import IsCaseParticipant
+
+
+class ServiceViewSet(viewsets.ModelViewSet):
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer
 
 
 class ClientViewSet(viewsets.ModelViewSet):
