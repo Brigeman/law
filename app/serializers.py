@@ -7,6 +7,7 @@ class ServiceSerializer(serializers.ModelSerializer):
         model = Service
         fields = '__all__'
 
+
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
