@@ -7,8 +7,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px; /* Увеличенный padding для большего пространства */
-  color: #f0e8e8; /* Основной цвет текста */
+  padding: 40px 20px; 
+  color: #141010; 
   position: relative;
 }
 
@@ -23,21 +23,7 @@
 .slogan {
   font-size: 2rem;
   margin-bottom: 20px;
-}
-
-.action-button {
-  padding: 12px 24px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 13px;
-  transition: background-color 0.3s;
-}
-
-.action-button:hover {
-  background-color: #0056b3;
+  color: darkgray;
 }
 
 /* Стили для особенностей (features) */
