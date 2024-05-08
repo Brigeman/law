@@ -5,6 +5,10 @@ db.sqlite3
 
 __pycache__/
 
+<<<<<<< Updated upstream
 venv/
 
 *.pyc
+=======
+venv/
+>>>>>>> Stashed changes
