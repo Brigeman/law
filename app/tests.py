@@ -2,10 +2,22 @@ from django.test import TestCase
 from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
 from django.urls import reverse
-from .models import Client, Appointment, Case
+from .models import Service, Client, Appointment, Case
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
 from django.core import mail
+
+
+class ServiceAPITests(APITestCase):
+    def setUp(self):
+        # Create test data
+        self.service = Service.objects.create(name='Test Service', description='Test description')
+
+    def test_get_services(self):
+        # Test to get all services
+        url = reverse('service-list')  # Use reverse() to get the URL for the service list view
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
 class ClientAPITests(APITestCase):
