@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -12,14 +13,14 @@ const Navbar = () => {
       <div className="wrapper_nav">
         <label htmlFor="active" className="close_nav"></label>
         <div className="close-menu-btn" onClick={() => { document.getElementById('active').checked = false; }}>
-  <span></span>
-</div>
+          <span></span>
+        </div>
         <ul>
-          <li><a href="http://localhost:3000/">Home</a></li>
-          <li><a href="http://localhost:3000/">About</a></li>
-          <li><a href="http://localhost:3000/">Services</a></li>
-          <li><a href="http://localhost:3000/">Gallery</a></li>
-          <li><a href="http://localhost:3000/">Feedback</a></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/services">Services</Link></li>
+          <li><Link to="/gallery">Gallery</Link></li>
+          <li><Link to="/feedback">Feedback</Link></li>
         </ul>
       </div>
       <div className="content_nav">

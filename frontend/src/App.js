@@ -1,16 +1,24 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
-import Body from './components/Body/Body';
 import Footer from './components/Footer/Footer';
-import './App.css'; 
+import Body from './components/Body/Body';
+import Services from './components/Services/Services';
+import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Body />
-      <Footer />
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Body />} />
+          <Route path="/services" element={<Services />} />
+          {/* Добавьте другие маршруты здесь при необходимости */}
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
