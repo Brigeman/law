@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Body />} />
           <Route path="/services" element={<Services />} />
-          {/* Добавьте другие маршруты здесь при необходимости */}
+          {/* Добавить другие маршруты здесь при необходимости */}
         </Routes>
         <Footer />
       </div>

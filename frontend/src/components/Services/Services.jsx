@@ -6,7 +6,7 @@ function Services() {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/services/') // сделать чет с этой хуйней
+        axios.get('http://127.0.0.1:8000/services/') 
         .then(response => {
             setServices(response.data);
         })
