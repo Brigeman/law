@@ -216,27 +216,6 @@ input[type="checkbox"] {
   display: none;
 }
 
-.content_nav {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  text-align: center;
-  width: 100%;
-  color: #202020;
-}
-
-.content_nav .title_nav {
-  font-size: 40px;
-  font-weight: 700;
-}
-
-.content_nav p {
-  font-size: 35px;
-  font-weight: 600;
-}
-
 #active:checked ~ .wrapper_nav ul li a {
   opacity: 1;
 }

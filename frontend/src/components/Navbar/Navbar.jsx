@@ -23,10 +23,10 @@ const Navbar = () => {
           <li><Link to="/feedback">Feedback</Link></li>
         </ul>
       </div>
-      <div className="content_nav">
+      {/* <div className="content_nav">
         <div className="title_nav">Fullscreen Overlay Navigation Bar</div>
         <p>(Hamburger Menu-2)</p>
-      </div>
+      </div> */}
     </React.Fragment>
   );
 }
