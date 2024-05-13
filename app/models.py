@@ -22,7 +22,7 @@ class Client(models.Model):
 
 
 class Request(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True, blank=True)
     subject = models.CharField(max_length=200)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
