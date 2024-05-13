@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from .models import Service,Client, Request, Case, Staff, Appointment
-from .serializers import ServiceSerializer, ClientSerializer, RequestSerializer, CaseSerializer, StaffSerializer, AppointmentSerializer
+from .models import Service,Client, Request, Case, Staff, Appointment, About
+from .serializers import ServiceSerializer, ClientSerializer, RequestSerializer, CaseSerializer, StaffSerializer, AppointmentSerializer, AboutSerializer
 from django.core.mail import send_mail
 from django.conf import settings
 from .permissions import IsCaseParticipant
@@ -55,3 +55,8 @@ class AppointmentViewSet(viewsets.ModelViewSet):
             [client_email],
             fail_silently=False,
         )
+
+
+class AboutViewSet(viewsets.ModelViewSet):
+    queryset = About.objects.all()
+    serializer_class = AboutSerializer

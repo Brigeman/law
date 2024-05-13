@@ -69,4 +69,12 @@ class Appointment(models.Model):
         return self.subject
 
 
+class About(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+
 # TODO  Implementing User Authentication

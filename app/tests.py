@@ -2,7 +2,7 @@ from django.test import TestCase
 from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
 from django.urls import reverse
-from .models import Service, Client, Appointment, Case
+from .models import Service, Client, Appointment, Case, Staff, About
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
 from django.core import mail
@@ -104,4 +104,28 @@ class CaseTests(APITestCase):
         if response.status_code != status.HTTP_201_CREATED:
             print(response.content)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+
+class StaffTests(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', email='test@example.com', password='password')
+        self.token = Token.objects.create(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+
+    def test_get_staff(self):
+        url = reverse('staff-list')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+class AboutTests(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', email='test@example.com', password='password')
+        self.token = Token.objects.create(user=self.user)
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+
+    def test_get_about(self):
+        url = reverse('about-list')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
