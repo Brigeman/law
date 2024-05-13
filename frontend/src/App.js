@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Body from './components/Body/Body';
 import Services from './components/Services/Services';
+import Staff from './components/Staff/Staff';
 import './App.css';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Body />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/staff" element={<Staff />} />
           {/* Добавить другие маршруты здесь при необходимости */}
         </Routes>
         <Footer />

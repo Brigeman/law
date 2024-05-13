@@ -171,6 +171,7 @@ h1 {
 .wrapper_nav ul li {
   height: 10%;
   margin: 15px 0;
+  white-space: nowrap;
 }
 
 .wrapper_nav ul li a {
