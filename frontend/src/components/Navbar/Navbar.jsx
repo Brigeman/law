@@ -20,7 +20,6 @@ const Navbar = () => {
           <li><Link to="/about">О нас</Link></li>
           <li><Link to="/services">Услуги</Link></li>
           <li><Link to="/staff">Команда</Link></li>
-          <li><Link to="/feedback">Feedback</Link></li>
         </ul>
       </div>
     </React.Fragment>
