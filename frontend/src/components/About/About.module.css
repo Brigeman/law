@@ -1,34 +1,31 @@
-/* Стили контейнера для обеспечения правильного расположения карточек */
 .aboutContainers {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px; /* Расстояние между карточками */
-    padding: 20px; /* Отступ внутри контейнера */
-    background-color: #f9f9f9; /* Светлый фон для контейнера */
-  }
-  
-  /* Стилизация карточек с информацией */
-  .aboutCard {
-    background-color: #ffffff; /* Белый фон карточек */
-    border: 1px solid #ddd; /* Граница карточки */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Слегка затененные для визуального выделения */
-    padding: 15px; /* Внутренние отступы */
-    border-radius: 8px; /* Скругленные углы */
-    width: 300px; /* Фиксированная ширина */
-    text-align: center; /* Выравнивание текста по центру */
-  }
-  
-  /* Стилизация заголовков в карточках */
-  .aboutCard h2 {
-    color: #333; /* Темный цвет для заголовка */
-    margin: 10px 0; /* Отступы сверху и снизу */
-  }
-  
-  /* Стилизация текста описания */
-  .aboutCard p {
-    color: #666; /* Серый цвет текста */
-    font-size: 14px; /* Размер шрифта */
-    line-height: 1.6; /* Межстрочный интервал */
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  flex: 1; /* Занимает оставшееся пространство */
+  align-items: center; /* Центрирование контента */
+}
+
+.aboutCard {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+}
+
+.aboutCard h2 {
+  color: #333;
+  margin: 10px 0;
+}
+
+.aboutCard p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+}

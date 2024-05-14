@@ -1,4 +1,3 @@
-/* App.css */
 @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,900;1,400;1,900&display=swap');
 
 html, body {
@@ -7,17 +6,32 @@ html, body {
   font-family: 'Bodoni Moda', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%; /* Устанавливаем высоту для html и body */
+  width: 100%; /* Устанавливаем ширину для html и body */
+  overflow-x: hidden; /* Избегаем горизонтальной прокрутки */
 }
 
 .App {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%; /* Устанавливаем ширину для контейнера */
+  box-sizing: border-box; /* Учитываем границы и padding в размерах элементов */
 }
 
-.Body {
-  flex: 1;
-  font-family: 'Bodoni Book', sans-serif;
+main {
+  flex: 1; /* Занимает оставшееся пространство */
+  display: flex;
+  justify-content: center; /* Центрирование контента по горизонтали */
+  align-items: center; /* Центрирование контента по вертикали */
+  width: 100%; /* Устанавливаем ширину для контейнера main */
+  padding: 0; 
+  box-sizing: border-box; /* Учитываем границы и padding в размерах элементов */
+}
+
+header, footer {
+  flex-shrink: 0;
+  width: 100%; /* Устанавливаем ширину для header и footer */
 }
 
 .bodoni-moda-header {

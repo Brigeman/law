@@ -1,9 +1,13 @@
 /* Services.module.css */
-.servicesContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+.page-container {
+  padding: 20px;
+  text-align: center;
+  min-height: 100vh; /* Минимальная высота, чтобы заполнить экран */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Центрирование контента по вертикали */
+  align-items: center; /* Центрирование контента по горизонтали */
+}
   
   .serviceCard {
     border: 1px solid #ccc;

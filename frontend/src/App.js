@@ -16,13 +16,15 @@ function App() {
       <div className="App">
         <Header />
         <ToastContainer />
-        <Routes>
-          <Route path="/" element={<Body />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/staff" element={<Staff />} />
-          <Route path="/about" element={<About />} />
-          {/* Добавить другие маршруты здесь при необходимости */}
-        </Routes>
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Body />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/staff" element={<Staff />} />
+            <Route path="/about" element={<About />} />
+            {/* Добавить другие маршруты здесь при необходимости */}
+          </Routes>
+        </main>
         <Footer />
       </div>
     </Router>

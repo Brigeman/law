@@ -10,6 +10,9 @@
   padding: 40px 20px; 
   color: #141010; 
   position: relative;
+  width: 100%; /* Устанавливаем ширину для body-container */
+  box-sizing: border-box; /* Учитываем границы и padding в размерах элементов */
+  overflow-x: hidden; /* Избегаем горизонтальной прокрутки */
 }
 
 /* Стили для слогана */
@@ -18,6 +21,8 @@
   text-align: left;
   margin-bottom: 200px;
   width: 100%;
+  padding: 0 20px; /* Добавляем отступы слева и справа */
+  box-sizing: border-box; /* Учитываем границы и padding в размерах элементов */
 }
 
 .slogan {
@@ -34,6 +39,8 @@
   width: 100%;
   max-width: 1200px;
   margin-bottom: 200px;
+  padding: 0 20px; /* Добавляем отступы слева и справа */
+  box-sizing: border-box; /* Учитываем границы и padding в размерах элементов */
 }
 
 .feature {
@@ -81,6 +88,8 @@
   width: 100%;
   max-width: 1200px;
   margin-bottom: 40px;
+  padding: 0 20px; /* Добавляем отступы слева и справа */
+  box-sizing: border-box; /* Учитываем границы и padding в размерах элементов */
 }
 
 .service {

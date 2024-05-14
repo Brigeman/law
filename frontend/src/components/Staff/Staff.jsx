@@ -12,9 +12,8 @@ function Staff() {
         })
         .catch(error => {
             console.error('Ошибка:', error);
-        })
-    }, [])
-
+        });
+    }, []);
 
     return (
         <div className={styles.staffContainers}>
