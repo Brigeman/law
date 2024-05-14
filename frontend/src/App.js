@@ -7,12 +7,15 @@ import Services from './components/Services/Services';
 import Staff from './components/Staff/Staff';
 import About from './components/About/About';
 import './App.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Header />
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<Body />} />
           <Route path="/services" element={<Services />} />

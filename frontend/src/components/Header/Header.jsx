@@ -6,19 +6,17 @@ import './Header.css';
 
 function Header() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [isActive, setIsActive] = useState(false); // Добавлено состояние isActive
+  const [isActive, setIsActive] = useState(false);
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
   const toggleMenu = () => {
-    setIsActive(prevIsActive => {
-      console.log('Toggle menu clicked. isActive will be:', !prevIsActive); // Покажет ожидаемое новое состояние
-      return !prevIsActive;
-    });
+    setIsActive(prevIsActive => !prevIsActive);
   };
 
-  const handleFormSubmit = (phoneNumber) => {
-    console.log('Заявка отправлена с номером:', phoneNumber);
+  const handleFormSubmit = (data) => {
+    console.log('Заявка отправлена с данными:', data);
+    closeModal();
   };
 
   return (

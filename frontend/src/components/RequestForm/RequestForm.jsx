@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './RequestForm.module.css';
 
-function RequestForm({ onSubmit }) {
+function RequestForm({ onSubmit, onClose }) {
   const [formData, setFormData] = useState({
     Имя: '',
     Телефон: '',
@@ -11,8 +13,6 @@ function RequestForm({ onSubmit }) {
     subject: '',
     description: ''
   });
-
-  const [isFormVisible, setIsFormVisible] = useState(true); // Добавляем состояние для видимости формы
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -36,7 +36,7 @@ function RequestForm({ onSubmit }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { subject, description } = formData; // Извлечение только нужных полей
+    const { subject, description } = formData;
     try {
       const response = await axios.post('http://127.0.0.1:8000/requests/', { subject, description }, {
         headers: {
@@ -45,14 +45,16 @@ function RequestForm({ onSubmit }) {
       });
       console.log('Data Submitted:', response.data);
       onSubmit(response.data);
-      setIsFormVisible(false); // Скрыть форму после успешной отправки
+      toast.success('Заявка успешно отправлена!');
+      onClose(); // Закрыть форму после успешной отправки
     } catch (error) {
       console.error('Ошибка при отправке данных:', error.response?.data || error.message);
+      toast.error('Ошибка при отправке данных!');
     }
   };
 
   return (
-    isFormVisible ? (
+    <div>
       <div className={styles.container}>
         <h2 className={styles.title}>Оставьте заявку и мы свяжемся с вами в ближайшее время</h2>
         <p className={styles.description}>Заполните форму ниже, чтобы отправить заявку.</p>
@@ -76,9 +78,7 @@ function RequestForm({ onSubmit }) {
           </div>
         </form>
       </div>
-    ) : (
-      <div className={styles.successMessage}>Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.</div>
-    )
+    </div>
   );
 }
 
