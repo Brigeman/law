@@ -1,14 +1,49 @@
-# db
+# Backend
 db.sqlite3
 
 .env
 
 __pycache__/
 
-<<<<<<< Updated upstream
 venv/
-
 *.pyc
-=======
-venv/
->>>>>>> Stashed changes
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.mypy_cache/
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# Static files
+staticfiles/
+
+# Frontend
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# testing
+coverage/
+
+# production
+build/
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node.js
+.next/
+.nuxt/
+.cache/
