@@ -1,29 +1,36 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
+  const checkboxRef = useRef(null);
+
+  const handleCloseMenu = () => {
+    if (checkboxRef.current) {
+      checkboxRef.current.checked = false;
+    }
+  };
+
   return (
     <React.Fragment>
-      <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet" />
-      <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
-      <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-      <input type="checkbox" id="active" />
-      <label htmlFor="active" className="menu-btn_nav"><span></span></label>
+      <input type="checkbox" id="active" ref={checkboxRef} />
+      <label htmlFor="active" className="menu-btn_nav" aria-label="Open Menu">
+        <span></span>
+      </label>
       <div className="wrapper_nav">
         <label htmlFor="active" className="close_nav"></label>
-        <div className="close-menu-btn" onClick={() => { document.getElementById('active').checked = false; }}>
+        <div className="close-menu-btn" onClick={handleCloseMenu} aria-label="Close Menu">
           <span></span>
         </div>
         <ul>
-          <li><Link to="/">Главная страница</Link></li>
-          <li><Link to="/about">О нас</Link></li>
-          <li><Link to="/services">Услуги</Link></li>
-          <li><Link to="/staff">Команда</Link></li>
+          <li><Link to="/" onClick={handleCloseMenu}>Главная страница</Link></li>
+          <li><Link to="/about" onClick={handleCloseMenu}>О нас</Link></li>
+          <li><Link to="/services" onClick={handleCloseMenu}>Услуги</Link></li>
+          <li><Link to="/staff" onClick={handleCloseMenu}>Команда</Link></li>
         </ul>
       </div>
     </React.Fragment>
   );
-}
+};
 
 export default Navbar;
