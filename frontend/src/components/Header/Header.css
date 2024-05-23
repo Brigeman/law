@@ -12,7 +12,7 @@
 .request-btn {
   position: relative;
   padding: 15px 40px; /* Уменьшенный размер для изящного вида */
-  margin-right: 30px;
+  margin-right: 100px;
   border-radius: 50px; /* Сглаженные края */
   background-color: transparent;
   font-family: 'Bodoni Moda', serif; /* Смена на ваш основной шрифт */

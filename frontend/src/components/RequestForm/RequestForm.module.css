@@ -19,6 +19,7 @@
     flex-direction: column;
     background-color: transparent; /* Удаление фона формы */
     margin: 20px; /* Добавляем небольшие отступы между формой и контейнером */
+    
 }
 
 @media (max-width: 400px) {
@@ -91,6 +92,7 @@
     cursor: pointer;
     transition: all 0.4s ease; /* Более быстрая анимация */
     box-shadow: 4px 4px 10px rgb(9, 2, 78), -4px -4px 10px rgba(255, 255, 255, 0.1);
+    
 }
 
 .submitButton:hover {
