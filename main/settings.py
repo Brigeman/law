@@ -87,7 +87,7 @@ DATABASES = {
         "NAME": os.getenv("DB_NAME"),
         "USER": os.getenv("DB_USER"),
         "PASSWORD": os.getenv("DB_PASSWORD"),
-        "HOST": os.getenv("DB_HOST"),
+        "HOST": os.getenv("DB_HOST", "db"),
         "PORT": os.getenv("DB_PORT"),
     },
 }
@@ -133,7 +133,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     os.path.join(
         BASE_DIR, "frontend", "build", "static"
-    ),  # Если у вас есть статика из фронтенда
+    ),  # Если  есть статика из фронтенда
 ]
 
 
@@ -152,6 +152,21 @@ REST_FRAMEWORK = {
     ],
 }
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+        },
+    },
+}
 
 # EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 # EMAIL_HOST = 'smtp.yandex.ru'
