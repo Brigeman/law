@@ -1,49 +1,168 @@
-# Getting Started with Create React App
+# Law Firm Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React frontend для системы управления юридической фирмой.
 
-## Available Scripts
+## 🚀 Быстрый запуск
 
-In the project directory, you can run:
+### Предварительные требования
+- Node.js 18+
+- npm или yarn
 
-### `npm start`
+### Установка и запуск
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+# Установка зависимостей
+npm install
+# или
+yarn install
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Настройка переменных окружения
+cp env.example .env
 
-### `npm test`
+# Запуск в режиме разработки
+npm start
+# или
+yarn start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Приложение будет доступно по адресу http://localhost:3000
 
-### `npm run build`
+## 🔧 Конфигурация
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Переменные окружения (.env)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+# API URL для локальной разработки
+REACT_APP_API_URL=http://127.0.0.1:8000
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# API URL для Docker
+REACT_APP_API_URL=http://backend:8000
 
-### `npm run eject`
+# API URL для production
+REACT_APP_API_URL=https://yourdomain.com
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 📁 Структура проекта
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+src/
+├── components/           # React компоненты
+│   ├── About/           # Компонент "О компании"
+│   ├── Body/            # Главная страница
+│   ├── Footer/          # Подвал сайта
+│   ├── Header/          # Шапка сайта
+│   ├── Navbar/          # Навигационное меню
+│   ├── RequestForm/     # Форма обратной связи
+│   ├── Services/        # Список услуг
+│   └── Staff/           # Список сотрудников
+├── config/              # Конфигурация
+│   └── api.js          # Настройки API клиента
+├── App.js              # Главный компонент
+└── index.js            # Точка входа
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🌐 API Интеграция
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Проект использует централизованную конфигурацию API в `src/config/api.js`:
 
-## Learn More
+```javascript
+import { apiClient } from './config/api';
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+// GET запрос
+const services = await apiClient.get('/services/');
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+// POST запрос
+const response = await apiClient.post('/requests/', data);
+```
+
+## 🎨 Стили
+
+Проект использует CSS Modules для изоляции стилей:
+- Каждый компонент имеет свой `.module.css` файл
+- Стили импортируются как `styles.className`
+
+## 📦 Доступные скрипты
+
+### `npm start` / `yarn start`
+Запускает приложение в режиме разработки.
+
+### `npm run build` / `yarn build`
+Собирает приложение для production в папку `build`.
+
+### `npm test` / `yarn test`
+Запускает тесты в интерактивном режиме.
+
+### `npm run eject` / `yarn eject`
+**Не рекомендуется!** Извлекает конфигурацию из Create React App.
+
+## 🐳 Docker
+
+Для запуска в Docker используйте:
+
+```bash
+# Сборка образа
+docker build -t law-frontend .
+
+# Запуск контейнера
+docker run -p 3000:3000 \
+  -e REACT_APP_API_URL=http://backend:8000 \
+  law-frontend
+```
+
+## 🔗 Связь с Backend
+
+Frontend взаимодействует с Django backend через REST API:
+- Все запросы идут через `apiClient`
+- Автоматическая обработка ошибок
+- Поддержка различных окружений (dev/prod)
+
+## 🐛 Устранение неполадок
+
+### Проблемы с API подключением
+1. Проверьте `REACT_APP_API_URL` в `.env`
+2. Убедитесь, что backend запущен
+3. Проверьте CORS настройки backend
+
+### Проблемы со стилями
+1. Убедитесь, что CSS Modules правильно импортированы
+2. Проверьте, что стили не конфликтуют
+
+### Проблемы с зависимостями
+```bash
+# Очистка кэша
+npm cache clean --force
+rm -rf node_modules package-lock.json
+npm install
+```
+
+## 📝 Разработка
+
+### Добавление нового компонента
+1. Создайте папку в `src/components/`
+2. Добавьте `.jsx` и `.module.css` файлы
+3. Импортируйте и используйте в `App.js`
+
+### Добавление нового API endpoint
+1. Обновите `src/config/api.js` при необходимости
+2. Используйте `apiClient` в компонентах
+3. Добавьте обработку состояний loading/error
+
+## 🚀 Деплой
+
+### Production сборка
+```bash
+npm run build
+```
+
+### Проверка сборки локально
+```bash
+npx serve -s build -l 3000
+```
+
+### Оптимизации
+- Код автоматически минифицируется
+- Статические файлы оптимизируются
+- Неиспользуемый код удаляется (tree shaking)
 
 ### Code Splitting
 

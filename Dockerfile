@@ -4,14 +4,16 @@ FROM python:3.11.6
 # Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем файл зависимостей
+# Копируем только requirements.txt сначала (для кэширования слоев)
 COPY requirements.txt .
 
 # Устанавливаем зависимости
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копируем остальные файлы
-COPY . .
+# Копируем только необходимые файлы для миграций
+COPY manage.py .
+COPY main/ ./main/
+COPY app/ ./app/
 
 # Объявляем порт, на котором будет работать приложение
 EXPOSE 8000

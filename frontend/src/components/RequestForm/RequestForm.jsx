@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { apiClient } from '../../config/api';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './RequestForm.module.css';
@@ -38,11 +38,7 @@ function RequestForm({ onSubmit, onClose }) {
     event.preventDefault();
     const { subject, description } = formData;
     try {
-      const response = await axios.post('http://127.0.0.1:8000/requests/', { subject, description }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+      const response = await apiClient.post('/requests/', { subject, description });
       console.log('Data Submitted:', response.data);
       onSubmit(response.data);
       toast.success('Заявка успешно отправлена!');

@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { apiClient } from '../../config/api';
 import styles from './Services.module.css';
 
 function Services() {
     const [services, setServices] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/services/') 
+        apiClient.get('/services/')
         .then(response => {
             setServices(response.data);
+            setLoading(false);
         })
         .catch(error => {
-            console.error('Ошибка:', error);
+            console.error('Ошибка при загрузке услуг:', error);
+            setError('Не удалось загрузить услуги');
+            setLoading(false);
         });
     }, [])
 
 
 return (
     <div className={styles.servicesContainer}>
-      {services.map(service => (
+      {loading && <p>Загрузка услуг...</p>}
+      {error && <p style={{color: 'red'}}>{error}</p>}
+      {!loading && !error && services.map(service => (
         <div className={styles.serviceCard} key={service.id}>
           <h2>{service.name}</h2>
           <p>{service.description}</p>

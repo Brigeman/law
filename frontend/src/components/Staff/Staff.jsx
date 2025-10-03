@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
+import { apiClient } from '../../config/api';
 import styles from './Staff.module.css';
 
 function Staff() {
     const [staff, setStaff] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/staff/')
+        apiClient.get('/staff/')
         .then(response => {
             setStaff(response.data);
+            setLoading(false);
         })
         .catch(error => {
-            console.error('Ошибка:', error);
+            console.error('Ошибка при загрузке сотрудников:', error);
+            setError('Не удалось загрузить сотрудников');
+            setLoading(false);
         });
     }, []);
 
     return (
         <div className={styles.staffContainers}>
-            {staff.map(staff => (
+            {loading && <p>Загрузка сотрудников...</p>}
+            {error && <p style={{color: 'red'}}>{error}</p>}
+            {!loading && !error && staff.map(staff => (
                 <div className={styles.staffCard} key={staff.id}>
                     <h2>{staff.name}</h2>
                     <p>{staff.role}</p>
