@@ -8,6 +8,9 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
+# Rate limiting требует Redis в production
+# from django_ratelimit.decorators import ratelimit
+# from django.utils.decorators import method_decorator
 from .models import Service,Client, Request, Case, Staff, Appointment, About
 from .serializers import (
     ServiceSerializer, ClientSerializer, RequestSerializer, 
@@ -21,6 +24,9 @@ class ServiceViewSet(viewsets.ModelViewSet):
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+    filterset_fields = ['is_active']
+    search_fields = ['name', 'description']
+    ordering_fields = ['name', 'price', 'created_at']
     
     def get_queryset(self):
         # Показываем только активные услуги неаутентифицированным пользователям
@@ -30,60 +36,86 @@ class ServiceViewSet(viewsets.ModelViewSet):
 
 
 class ClientViewSet(viewsets.ModelViewSet):
-    queryset = Client.objects.all()
+    queryset = Client.objects.select_related('user').prefetch_related('cases')
     serializer_class = ClientSerializer
     permission_classes = [IsAuthenticated, IsStaffUser]
+    search_fields = ['name', 'email', 'company_name', 'phone']
+    ordering_fields = ['name', 'created_at']
 
 
+# TODO: Включить rate limiting после настройки Redis
+# @method_decorator(ratelimit(key='ip', rate='20/h', method='POST'), name='create')
 class RequestViewSet(viewsets.ModelViewSet):
-    queryset = Request.objects.all()
+    queryset = Request.objects.select_related('client')
     serializer_class = RequestSerializer
     permission_classes = [AllowAny]  # Разрешаем всем отправлять заявки
+    filterset_fields = ['status', 'client']
+    search_fields = ['subject', 'description']
+    ordering_fields = ['created_at', 'updated_at']
     
     def get_queryset(self):
+        # Оптимизация с select_related
+        queryset = Request.objects.select_related('client')
+        
         # Сотрудники видят все заявки, клиенты только свои
         if hasattr(self.request.user, 'staff_profile'):
-            return Request.objects.all()
+            return queryset
         elif hasattr(self.request.user, 'client_profile'):
-            return Request.objects.filter(client=self.request.user.client_profile)
+            return queryset.filter(client=self.request.user.client_profile)
         return Request.objects.none()
 
 
 class CaseViewSet(viewsets.ModelViewSet):
-    queryset = Case.objects.all()
+    queryset = Case.objects.select_related('client', 'assigned_to').prefetch_related('appointments')
     serializer_class = CaseSerializer
     permission_classes = [IsAuthenticated, IsCaseParticipant]
+    filterset_fields = ['status', 'assigned_to', 'client']
+    search_fields = ['title', 'case_number', 'description']
+    ordering_fields = ['created_at', 'updated_at', 'case_number']
 
     def get_queryset(self):
+        # Оптимизация с select_related
+        queryset = Case.objects.select_related('client', 'assigned_to').prefetch_related('appointments')
+        
         # Сотрудники видят все дела, клиенты только свои
         if hasattr(self.request.user, 'staff_profile'):
-            return Case.objects.all()
+            return queryset
         elif hasattr(self.request.user, 'client_profile'):
-            return Case.objects.filter(client=self.request.user.client_profile)
+            return queryset.filter(client=self.request.user.client_profile)
         return Case.objects.none()
 
 
 class StaffViewSet(viewsets.ModelViewSet):
-    queryset = Staff.objects.all()
+    queryset = Staff.objects.select_related('user')
     serializer_class = StaffSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+    filterset_fields = ['role', 'is_active']
+    search_fields = ['name', 'email']
+    ordering_fields = ['name', 'created_at']
     
     def get_queryset(self):
-        # Показываем только активных сотрудников
-        return Staff.objects.filter(is_active=True)
+        # Оптимизация и показываем только активных сотрудников
+        queryset = Staff.objects.select_related('user')
+        return queryset.filter(is_active=True)
 
 
 class AppointmentViewSet(viewsets.ModelViewSet):
-    queryset = Appointment.objects.all()
+    queryset = Appointment.objects.select_related('case', 'case__client', 'case__assigned_to')
     serializer_class = AppointmentSerializer
     permission_classes = [IsAuthenticated]
+    filterset_fields = ['is_completed', 'case']
+    search_fields = ['subject', 'notes']
+    ordering_fields = ['meeting_date', 'created_at']
 
     def get_queryset(self):
+        # Оптимизация с select_related
+        queryset = Appointment.objects.select_related('case', 'case__client', 'case__assigned_to')
+        
         # Сотрудники видят все встречи, клиенты только по своим делам
         if hasattr(self.request.user, 'staff_profile'):
-            return Appointment.objects.all()
+            return queryset
         elif hasattr(self.request.user, 'client_profile'):
-            return Appointment.objects.filter(case__client=self.request.user.client_profile)
+            return queryset.filter(case__client=self.request.user.client_profile)
         return Appointment.objects.none()
 
     def perform_create(self, serializer):
@@ -111,6 +143,8 @@ class AboutViewSet(viewsets.ModelViewSet):
 
 
 # Authentication Views
+# TODO: Включить rate limiting после настройки Redis
+# @method_decorator(ratelimit(key='ip', rate='5/h', method='POST'), name='post')
 class RegisterView(APIView):
     permission_classes = [AllowAny]
 
@@ -130,6 +164,8 @@ class RegisterView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# TODO: Включить rate limiting после настройки Redis
+# @method_decorator(ratelimit(key='ip', rate='10/h', method='POST'), name='post')
 class LoginView(APIView):
     permission_classes = [AllowAny]
 
