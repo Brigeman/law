@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
     "drf_yasg",
-    # "django_ratelimit",  # TODO: Требует Redis для production
+    "django_ratelimit",
     "django_filters",
 ]
 
@@ -260,15 +260,21 @@ SIMPLE_JWT = {
     'USER_ID_CLAIM': 'user_id',
 }
 
-# Rate Limiting Configuration
-# TODO: Добавить Redis для production rate limiting
-RATELIMIT_ENABLE = os.getenv('RATELIMIT_ENABLE', 'False').lower() == 'true'
-RATELIMIT_USE_CACHE = 'default'
+# Cache Configuration with Redis
+REDIS_URL = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
 
-# Cache Configuration (для rate limiting)
-# TODO: В production используйте Redis
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': REDIS_URL,
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        },
+        'KEY_PREFIX': 'law_firm',
+        'TIMEOUT': 300,  # 5 минут по умолчанию
     }
 }
+
+# Rate Limiting Configuration
+RATELIMIT_ENABLE = True
+RATELIMIT_USE_CACHE = 'default'

@@ -8,9 +8,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
-# Rate limiting требует Redis в production
-# from django_ratelimit.decorators import ratelimit
-# from django.utils.decorators import method_decorator
+from django_ratelimit.decorators import ratelimit
+from django.utils.decorators import method_decorator
 from .models import Service,Client, Request, Case, Staff, Appointment, About
 from .serializers import (
     ServiceSerializer, ClientSerializer, RequestSerializer, 
@@ -43,8 +42,7 @@ class ClientViewSet(viewsets.ModelViewSet):
     ordering_fields = ['name', 'created_at']
 
 
-# TODO: Включить rate limiting после настройки Redis
-# @method_decorator(ratelimit(key='ip', rate='20/h', method='POST'), name='create')
+@method_decorator(ratelimit(key='ip', rate='20/h', method='POST'), name='create')
 class RequestViewSet(viewsets.ModelViewSet):
     queryset = Request.objects.select_related('client')
     serializer_class = RequestSerializer
@@ -143,8 +141,7 @@ class AboutViewSet(viewsets.ModelViewSet):
 
 
 # Authentication Views
-# TODO: Включить rate limiting после настройки Redis
-# @method_decorator(ratelimit(key='ip', rate='5/h', method='POST'), name='post')
+@method_decorator(ratelimit(key='ip', rate='5/h', method='POST'), name='post')
 class RegisterView(APIView):
     permission_classes = [AllowAny]
 
@@ -164,8 +161,7 @@ class RegisterView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# TODO: Включить rate limiting после настройки Redis
-# @method_decorator(ratelimit(key='ip', rate='10/h', method='POST'), name='post')
+@method_decorator(ratelimit(key='ip', rate='10/h', method='POST'), name='post')
 class LoginView(APIView):
     permission_classes = [AllowAny]
 
