@@ -276,5 +276,7 @@ CACHES = {
 }
 
 # Rate Limiting Configuration
-RATELIMIT_ENABLE = True
+import sys
+# Отключаем rate limiting во время тестов
+RATELIMIT_ENABLE = 'test' not in sys.argv
 RATELIMIT_USE_CACHE = 'default'

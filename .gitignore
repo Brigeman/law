@@ -48,3 +48,8 @@ yarn-error.log*
 .nuxt/
 .cache/
 logs/*.log
+
+# Coverage
+.coverage
+htmlcov/
+.coverage.*
